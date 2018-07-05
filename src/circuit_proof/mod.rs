@@ -12,6 +12,8 @@ use proof_transcript::ProofTranscript;
 use util;
 use inner_product_proof::{inner_product, InnerProductProof};
 
+pub mod r1cs;
+
 #[derive(Clone, Debug)]
 pub struct Circuit {
     n: usize,
@@ -358,7 +360,7 @@ pub fn matrix_flatten(W: Vec<Vec<Scalar>>, z: Scalar, output_dim: usize) -> Resu
 
     for row in 0..q {
         if W[row].len() != output_dim {
-            return Err("matrix size doesn't match specified parameters in matrix_flatten");
+            return Err("Matrix size doesn't match specified parameters in matrix_flatten");
         }
         for col in 0..output_dim {
             result[col] += exp_z * W[row][col];
